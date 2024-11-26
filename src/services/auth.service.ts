@@ -1,18 +1,3 @@
-// import { users } from "../mockData/users";
-// import jwt from "jsonwebtoken";
-
-// const SECRET_KEY = "your_secret_key";
-
-// export const authenticateUser = (email: string, password: string) => {
-//   const user = users.find(u => u.email === email && u.password === password);
-
-//   if (!user) {
-//     throw new Error("Invalid credentials");
-//   }
-
-//   return jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, { expiresIn: "1h" });
-// };
-
 import jwt from "jsonwebtoken";
 import { users } from "../mockData/users";
 
