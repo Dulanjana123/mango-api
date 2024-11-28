@@ -9,7 +9,6 @@ const users_1 = require("../mockData/users");
 const SECRET_KEY = "your_secret_key";
 class AuthService {
     static generateToken(payload) {
-        // Create a token with the provided payload
         return jsonwebtoken_1.default.sign(payload, SECRET_KEY, { expiresIn: "1h" });
     }
     static validateCredentials(request) {
@@ -18,10 +17,12 @@ class AuthService {
             return null;
         }
         // Return user details for token generation
-        return { id: user.id, name: user.name, email: user.email };
-    }
-    static getUserByEmail(email) {
-        return users_1.users.find((user) => user.email === email);
+        return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role || "user", // Add default role if not available
+        };
     }
 }
 exports.AuthService = AuthService;

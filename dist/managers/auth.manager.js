@@ -8,12 +8,14 @@ class AuthManager {
         if (!user) {
             return null;
         }
+        // Generate the token with additional fields
         const token = auth_service_1.AuthService.generateToken({
             id: user.id,
             name: user.name,
             email: user.email,
+            role: user.role || "user", // Default role if not provided
         });
-        return { token };
+        return { email: user.email, token };
     }
 }
 exports.AuthManager = AuthManager;
