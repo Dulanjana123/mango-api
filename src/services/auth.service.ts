@@ -5,19 +5,25 @@ import { UserLoginDto } from "../types/interfaces/authentication/user-login-dto"
 const SECRET_KEY = "your_secret_key";
 
 export class AuthService {
-  static generateToken(payload: object): string {
+  static generateToken(payload: { id: number; name: string; email: string }): string {
+    // Create a token with the provided payload
     return jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
   }
 
-  static validateCredentials(request: UserLoginDto): boolean {
+  static validateCredentials(request: UserLoginDto): { id: number; name: string; email: string } | null {
+    const user = users.find(
+      (u) => u.email === request.email && u.password === request.password
+    );
 
-    const user = users.find(u => u.email === request.email && u.password === request.password);
-    return user != undefined;
+    if (!user) {
+      return null;
+    }
+
+    // Return user details for token generation
+    return { id: user.id, name: user.name, email: user.email };
   }
 
   static getUserByEmail(email: string) {
-    return users.find(user => user.email === email);
+    return users.find((user) => user.email === email);
   }
 }
-
-
