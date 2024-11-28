@@ -2,14 +2,20 @@ import { AuthService } from "../services/auth.service";
 import { UserLoginDto } from "../types/interfaces/authentication/user-login-dto";
 
 export class AuthManager {
-  static login(request : UserLoginDto): { token: string } | null {
-    const isValid = AuthService.validateCredentials(request);
+  static login(request: UserLoginDto): { token: string } | null {
+    const user = AuthService.validateCredentials(request);
 
-    if (!isValid) {
+    if (!user) {
       return null;
     }
 
-    const token = AuthService.generateToken({ request });
+    const token = AuthService.generateToken({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    });
+
     return { token };
   }
 }
+
