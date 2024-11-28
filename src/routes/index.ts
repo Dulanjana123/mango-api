@@ -5,7 +5,6 @@ import { authMiddleware } from "../middlewares/auth.middleware";
 
 const router = express.Router();
 
-// Default route for '/'
 router.get("/", (req, res) => {
     res.json({ message: "Welcome to the API!" });
   });

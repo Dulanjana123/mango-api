@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { users } from "../mockData/users";
+import { UserLoginDto } from "../types/interfaces/authentication/user-login-dto";
 
 const SECRET_KEY = "your_secret_key";
 
@@ -8,9 +9,9 @@ export class AuthService {
     return jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
   }
 
-  static validateCredentials(email: string, password: string): boolean {
+  static validateCredentials(request: UserLoginDto): boolean {
 
-    const user = users.find(u => u.email === email && u.password === password);
+    const user = users.find(u => u.email === request.email && u.password === request.password);
     return user != undefined;
   }
 

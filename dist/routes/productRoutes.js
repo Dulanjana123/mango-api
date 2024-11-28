@@ -4,13 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const auth_controller_1 = require("../controllers/auth.controller");
-const data_controller_1 = require("../controllers/data.controller");
+const product_controller_1 = require("../controllers/product.controller");
 const auth_middleware_1 = require("../middlewares/auth.middleware");
 const router = express_1.default.Router();
-router.get("/", (req, res) => {
-    res.json({ message: "Welcome to the API!" });
-});
-router.post("/login", auth_controller_1.login);
-router.get("/data", auth_middleware_1.authMiddleware, data_controller_1.getData);
+// Get all products
+router.get("/products", auth_middleware_1.authMiddleware, product_controller_1.getAllProducts);
+// Get a product by ID
+router.get("/products/:id", auth_middleware_1.authMiddleware, product_controller_1.getProductById);
 exports.default = router;
