@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import routes from "./routes/index";
 import { errorMiddleware } from "./middlewares/error.middleware";
-import productRoutes from "./routes/productRoutes";
+import productRoutes from "./routes/product.Routes";
 import orderRoutes from "./routes/order.Routes";
 
 const app = express();

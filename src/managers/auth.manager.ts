@@ -14,7 +14,7 @@ export class AuthManager {
       id: user.id,
       name: user.name,
       email: user.email,
-      role: user.role || "user", // Default role if not provided
+      role: user.role || "user", // Default role 
     });
 
     return { email: user.email, token };

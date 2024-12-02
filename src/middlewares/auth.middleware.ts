@@ -8,12 +8,12 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
 
   if (!token) {
     res.status(401).json({ message: "Unauthorized" });
-    return; // Ensure no further execution
+    return; 
   }
 
   try {
     jwt.verify(token, SECRET_KEY);
-    next(); // Call next() to pass control to the next middleware or route handler
+    next(); 
   } catch {
     res.status(401).json({ message: "Invalid token" });
     return;
