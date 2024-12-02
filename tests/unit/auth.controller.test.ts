@@ -14,7 +14,7 @@ describe("AuthController", () => {
   it("should return 200 and token for valid credentials", async () => {
     const mockPayload = { email: "alice@example.com", password: "password123" };
 
-    // Mock the AuthManager.login method
+    
     (AuthManager.login as jest.Mock).mockReturnValue({
       email: mockPayload.email,
       token: "mockToken",
@@ -38,7 +38,7 @@ describe("AuthController", () => {
   it("should return 401 for invalid credentials", async () => {
     const mockPayload = { email: "alice@example.com", password: "wrongpassword" };
 
-    // Mock the AuthManager.login method to return null for invalid credentials
+    
     (AuthManager.login as jest.Mock).mockReturnValue(null);
 
     const response = await request(app).post("/login").send(mockPayload);

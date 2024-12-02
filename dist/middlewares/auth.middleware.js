@@ -11,11 +11,11 @@ const authMiddleware = (req, res, next) => {
     const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
     if (!token) {
         res.status(401).json({ message: "Unauthorized" });
-        return; // Ensure no further execution
+        return;
     }
     try {
         jsonwebtoken_1.default.verify(token, SECRET_KEY);
-        next(); // Call next() to pass control to the next middleware or route handler
+        next();
     }
     catch (_b) {
         res.status(401).json({ message: "Invalid token" });
