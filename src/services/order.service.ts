@@ -1,7 +1,6 @@
 import { orders } from "../mockData/orders";
 import { OrderDto } from "../types/interfaces/order/order-dto";
 
-
 export class OrderRepository {
 
   getAllOrders(): OrderDto[] {
