@@ -1,7 +1,7 @@
 import express from "express";
 import { login } from "../controllers/auth.controller";
-import { getData } from "../controllers/data.controller";
-import { authMiddleware } from "../middlewares/auth.middleware";
+import productRoutes from "./product.Routes";
+import orderRoutes from "./order.Routes";
 
 const router = express.Router();
 
@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
   });
 
 router.post("/login", login);
-router.get("/data", authMiddleware, getData);
+router.use("/product", productRoutes);
+router.use("/order", orderRoutes);
 
 export default router;

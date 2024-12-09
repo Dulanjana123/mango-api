@@ -1,5 +1,6 @@
 import { OrderRepository } from "../services/order.service";
 import { OrderDto } from "../types/interfaces/order/order-dto";
+import { NotFoundError } from "../types/models/NotFoundError";
 
 
 export class OrderManager {
@@ -23,7 +24,7 @@ export class OrderManager {
   fetchOrderById(id: number): OrderDto {
     const order = this.orderRepository.getOrderById(id);
     if (!order) {
-      throw new Error("Order not found");
+      throw new NotFoundError(`Order with ID ${id} not found`);
     }
     return order;
   }

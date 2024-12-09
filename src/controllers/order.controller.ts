@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { OrderManager } from "../managers/order.manager";
 import { Pagination } from "../types/interfaces/Pagination/pagination";
+import { ValidationError } from "../types/models/ValidationError";
+import { NotFoundError } from "../types/models/NotFoundError";
 
 const orderManager = new OrderManager();
 
@@ -60,7 +62,17 @@ export const getAllOrders = (req: Request, res: Response, next: NextFunction) =>
 export const getOrderById = (req: Request, res: Response, next: NextFunction) => {
   try {
     const orderId = parseInt(req.params.id, 10);
+
+    if (isNaN(orderId)) {
+      throw new ValidationError('Invalid order ID');
+    }
+
     const order = orderManager.fetchOrderById(orderId);
+
+    if (!order) {
+      throw new NotFoundError(`Order with ID ${orderId} not found`);
+    }
+
     res.status(200).json({
       statusCode: 200,
       isSuccess: true,
@@ -68,6 +80,21 @@ export const getOrderById = (req: Request, res: Response, next: NextFunction) =>
       result: order,
     });
   } catch (error) {
+    next(error);
+  }
+};
+
+export const getDashboardOrders = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    let orders = orderManager.fetchAllOrders();
+    res.status(200).json({
+      statusCode: 200,
+      isSuccess: true,
+      errorMessages: [],
+      result: orders,
+    });
+  }
+  catch (error) {
     next(error);
   }
 };
