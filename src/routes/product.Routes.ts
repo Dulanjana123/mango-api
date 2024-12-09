@@ -6,10 +6,10 @@ const router = express.Router();
 
 // Get all products
 //router.get("/productItem", authMiddleware, getAllProducts);
-router.get("/productItem", getAllProducts);
+router.get("/", getAllProducts);
 
 // Get a product by ID
 //router.get("/productItem/:id", authMiddleware, getProductById);
-router.get("/productItem/:id", getProductById);
+router.get("/:id", getProductById);
 
 export default router;
