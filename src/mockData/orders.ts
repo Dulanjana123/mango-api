@@ -132,4 +132,17 @@ export const orders: OrderDto[] = [
     status: "Pending",
     totalItems: 6,
   },
+  {
+    orderHeaderId: 596,
+    pickupName: "Amal",
+    pickupPhoneNumber: "42525342400",
+    pickupEmail: "amal@gmail.com",
+    applicationUserId: "2",
+    user: null,
+    orderTotal: 720,
+    orderDate: "2024-11-29T09:19:44.3073487",
+    stripePaymentIntentID: "pi_3QQQM0DU3OjDrP4G0g5CmRdO",
+    status: "Pending",
+    totalItems: 8,
+  },
 ];
